@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testing</title>
+</head>
+
+<body>
+    <!-- deklarasi var & hoisting -->
+    <script>
+        function makeTea(isCold) {
+            var tea;
+            if (isCold) {
+                tea = "Make an Ice Tea!"
+            } else {
+                tea = "Make a Hot Tea!"
+            }
+            return tea;
+        }
+
+        console.log(makeTea(false));
+    </script>
+    <script>
+        function getFood() {
+            food = "chocolate";
+            console.log(food);
+            var food;
+        }
+
+        getFood();
+    </script>
+    <!-- end of deklarasi var & hoisting -->
+
+    <!-- let & const -->
+    <script>
+        function makeTea(isCold) {
+            if (isCold) {
+                tea = "Make an Ice Tea!"
+            } else {
+                tea = "Make a Hot Tea!"
+            }
+            return tea;
+        }
+
+        console.log(makeTea(false));
+    </script>
+    <script>
+        function getFood() {
+            food = "chocolate";
+            console.log(food);
+            food;
+        }
+
+        getFood();
+    </script>
+    <script>
+        let name = "John";
+        name = "Doe";
+
+        console.log(name);
+    </script>
+    <script>
+        const fruits = ["apple", "orange"];
+        fruits.push = "banana"
+
+        console.log(fruits);
+    </script>
+    <script>
+        const people = {
+            nama: "Arief",
+            umur: 19
+        }
+        people.alamat = "Rancaekek"
+
+        console.log(people);
+    </script>
+    <!-- end of let & const -->
+
+    <!-- template literals -->
+    <script>
+        const member = {
+            namaDepan: "Dimas",
+            namaBelakang: "Saputra",
+            umur: 18
+        }
+
+        console.log(`Nama: ${member.namaDepan} ${member.namaBelakang} , Umur: ${member.umur}`);
+    </script>
+
+    <script>
+        const user = {
+            namaDepan: "Dimas",
+            namaBelakang: "Saputra",
+            umur: 18
+        }
+
+        const admin = {
+            nama: "Jane",
+            posisi: "Marketing"
+        }
+
+        const message = `Dear, ${user.namaDepan} ${user.namaBelakang}
+            Selamat ulang tahun yang ke- ${user.umur} semoga selalu diberi kesehatan.
+            Best Regards,
+            ${admin.nama}
+            ${admin.posisi}`;
+
+        console.log(message);
+    </script>
+    <!-- end of template literals -->
+
+    <!-- destructing object & array -->
+    <script>
+        const foods = ['Pie', 'Cake', 'Honey']
+
+        const myFood = foods[0]
+        const yourFood = foods[1]
+        const ourFood = foods[2]
+
+        console.log(myFood, yourFood, ourFood)
+    </script>
+    <script>
+        const profile = {
+            namaDepan: "John",
+            namaBelakang: "Doe",
+            umur: 18
+        }
+
+        const namaDepan = profile.namaDepan
+        const namaBelakang = profile.namaBelakang
+        const umur = profile.umur
+
+        console.log(namaDepan, namaBelakang, umur)
+    </script>
+    <script>
+        // Destructing Object
+        const profil = {
+            namaAwal: "Muhamad Arief",
+            namaAkhir: 'Rahmatulloh',
+            usia: 19
+        }
+
+        const {
+            namaAwal,
+            namaAkhir,
+            usia
+        } = profil;
+
+        console.log(namaAwal, namaAkhir, usia);
+    </script>
+    <script>
+        // Destructing Assignment
+        const profil2 = {
+            namaAwal2: "M Arief",
+            namaAkhir2: "R",
+            usia2: 19
+        }
+
+        let namaAwal2 = "Testing";
+        let usia2 = 20;
+
+        ({
+            namaAwal2,
+            namaAkhir2,
+            usia2
+        } = profil2);
+
+        console.log(namaAwal2, namaAkhir2);
+        console.log(usia2);
+    </script>
+
+    <script>
+        // Default Values
+        const profil3 = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 18
+        }
+
+
+        const {
+            firstName,
+            age,
+            isMale = false
+        } = profil3;
+
+        console.log(firstName)
+        console.log(age)
+        console.log(isMale)
+    </script>
+    <script>
+        // Local Variable
+        const profil4 = {
+            firstName: "Mestika",
+            lastName: "Mawarni",
+            age: 18
+        }
+
+        const {
+            firstName: localFirstName,
+            lastName: localLastName,
+            age: localAge
+        } = profil4;
+
+        console.log(localFirstName);
+        console.log(localLastName);
+        console.log(localAge);
+    </script>
+    <script>
+        // Destructing Array
+        const favorit = ["Cireng", "Cimol", "Cilok", "Seblak"];
+
+        const [nyunda1, nyunda2, nyunda3, nyunda4] = favorit;
+
+        console.log(nyunda1);
+        console.log(nyunda2);
+        console.log(nyunda3);
+        console.log(nyunda4);
+    </script>
+    <script>
+        // Destructing Assignment
+        const favorites = ["Seafood", "Salad", "Nugget", "Soup"];
+
+        let myMakanan = "Ice Cream";
+        let herFood = "Noodles";
+
+        [myMakanan, herFood] = favorites;
+
+        console.log(myMakanan);
+        console.log(herFood);
+    </script>
+    <script>
+        var a = 1;
+        var b = 2;
+        var temp;
+
+        console.log("Sebelum swap");
+        console.log("Nilai a: " + a);
+        console.log("Nilai b: " + b);
+
+        temp = a;
+        a = b;
+        b = temp;
+
+        console.log("Setelah swap");
+        console.log("Nilai a: " + a);
+        console.log("Nilai b: " + b);
+    </script>
+    <script>
+        let c = 3;
+        let d = 4;
+
+        console.log("Sebelum swap");
+        console.log("Nilai a: " + c);
+        console.log("Nilai b: " + d);
+
+        [c, d] = [d, c]
+
+        console.log("Setelah swap");
+        console.log("Nilai a: " + c);
+        console.log("Nilai b: " + d)
+    </script>
+    <script>
+        // Default Values
+        const favorites2 = ["Seafood"];
+
+        const [myFood2, herFood2 = "Salad"] = favorites2
+
+        console.log(myFood2);
+        console.log(herFood2);
+    </script>
+    <!-- end of destructing object & array -->
+
+    <!-- spreading operator & rest parameter -->
+    <script>
+        // Spreading
+        const favoritin = ["Rendang", "Ayam Goreng", "Perkedel"];
+
+        console.log(favoritin);
+    </script>
+    <script>
+        const favoritin2 = ["Rendang", "Ayam Goreng", "Perkedel"];
+
+        console.log(...favoritin2);
+    </script>
+    <script>
+        const numbers = [12, 32, 90, 11, 10];
+
+        console.log(Math.max(...numbers));
+    </script>
+    <script>
+        const favoritin3 = ["Rendang", "Ayam Goreng", "Perkedel", "Ikan Bakar"];
+        const others = ["Risol", "Pastel", "Pukis"];
+
+        const allFavorites = [...favoritin3, ...others]
+
+        console.log(allFavorites);
+    </script>
+    <script>
+        // Rest Parameter
+        function sum(...angkas) {
+            var result = 0;
+            for (let angka of angkas) {
+                result += angka
+            }
+            return result;
+        }
+
+        console.log(sum(1, 2, 3, 4, 5));
+    </script>
+    <script>
+        const refrigerator = ["Samsung", 50, 2, "milk", "cheese", "egg", "butter"];
+
+        const [manufacture, weight, door, ...items] = refrigerator;
+
+        console.log(manufacture);
+        console.log(weight);
+        console.log(door);
+        console.log(items);
+    </script>
+    <!-- end of spreading operator & rest parameter -->
+
+    <!-- arrow function expression -->
+    <script>
+        const upperizedNames = ["STT", "Mandala", "Bandung"]
+            .map(function(name) {
+                return name.toUpperCase();
+            });
+
+        console.log(...upperizedNames);
+    </script>
+    <script>
+        const upperizedNames2 = ["STT", "Mandala", "Bandung"]
+            .map(name => name.toUpperCase());
+
+        console.log(...upperizedNames2);
+    </script>
+    <script>
+        // Regular Function
+        function sayHello(greet) {
+            console.log(`${freet}!`);
+        }
+
+        const sayName = function(name) {
+            console.log(`Nama saya ${name}`)
+        }
+    </script>
+    <script>
+        // Arrow Function
+        const sayHallo = greet => console.log(`${greet}!`);
+        const sayNama = name => console.log(`Nama saya ${name}`);
+    </script>
+    <script>
+        const sayNama2 = name => console.log(`Nama saya ${name}`);
+    </script>
+    <script>
+        ["Dimas", "Widdy", "Buchori"].forEach(name => console.log(`Nama saya ${name}`));
+    </script>
+    <script>
+        const users = {
+            introduce: name => console.log(`Nama saya ${name}`)
+        }
+    </script>
+    <script>
+        // Function Parameter
+        const sayName2 = name => console.log(`Nama saya ${name}`);
+    </script>
+    <script>
+        const sayHello2 = (name, greet) => console.log(`${greet}, ${name}!`);
+
+        sayHello2("Arief", "Selamat Pagi")
+    </script>
+    <script>
+        const sayHello3 = () => console.log("Selamat pagi semuanya!");
+
+        sayHello3()
+    </script>
+    <script>
+        // Block Body Fuction
+        const sayHello4 = language => {
+            if (language.toUpperCase() === "INDONESIA") {
+                return "Selamat Pagi!";
+            } else {
+                return "Good Morning!";
+            }
+        }
+
+        console.log(sayHello4("Indonesia"));
+    </script>
+    <script>
+        // This Keyword
+        function Orang(nama, umur, hobi) {
+            this.nama = nama;
+            this.umur = umur;
+            this.hobi = hobi;
+        }
+
+        const programmer = new Orang("Green Goblin", 19, ["Coding", "Ngegame", "Desain"]);
+
+        console.log(programmer.nama);
+        console.log(programmer.umur);
+        console.log(programmer.hobi);
+    </script>
+    <script>
+        const programmer2 = {
+            nama2: "Batur",
+            umur2: 19,
+            hobi2: ["coding", "tidur", "mabar"]
+        }
+
+        console.log(programmer2.nama2);
+        console.log(programmer2.umur2);
+        console.log(programmer2.hobi2);
+    </script>
+    <!-- <script>
+        function People(name, age, hobby) {
+            this.name = name;
+            this.age = age;
+            this.hobby = hobby;
+        }
+
+
+        // menambahkan introMyself ke People
+        People.prototype.introMyself = function() {
+            // this -> People
+            setTimeout(function() {
+                // this -> ??
+                console.log(`Hello! Nama saya ${this.name}, umur saya ${this.age}.`)
+                console.log(`Hobby saya adalah ${this.hobby}`)
+            }, 300)
+        }
+
+
+        const programmer3 = new People("John", 18, ["Coding", "Read book", "Ping-pong"]);
+        programmer3.introMyself();
+    </script>
+    <script>
+        function People(name, age, hobby) {
+            this.name = name;
+            this.age = age;
+            this.hobby = hobby;
+        }
+
+
+        // menambahkan introMyself ke People
+        People.prototype.introMyself = function() {
+            // this -> People
+            setTimeout(() => {
+                // this -> People
+                console.log(`Hello! Nama saya ${this.name}, umur saya ${this.age}.`)
+                console.log(`Hobby saya adalah ${this.hobby}`)
+            }, 300)
+        }
+
+
+        const programmer4 = new People("John", 18, ["Coding", "Read book", "Ping-pong"]);
+        programmer4.introMyself();
+    </script> -->
+    <script>
+        // Default Parameter
+        function sayHelo(name = "Stranger", greet = "Hello") {
+            console.log(`${greet} ${name}!`);
+        }
+
+        sayHelo("Dimas", "Hai");
+        sayHelo();
+    </script>
+    <!-- end of arrow function expression -->
+
+    <!-- class -->
+    <script>
+        // Class Before ES6
+        function Car(manufacture, color) {
+            this.manufacture = manufacture;
+            this.color = color;
+            this.enginesActive = false;
+        }
+        Car.prototype.startEngines = function() {
+            console.log('Mobil dinyalakan...');
+            this.enginesActive = true;
+        };
+
+        Car.prototype.info = function() {
+            console.log("Manufacture: " + this.manufacture);
+            console.log("Color : " + this.color);
+            console.log("Engines: " + (this.enginesActive ? "Active" : "Incative"));
+        }
+
+        var johnCar = new Car("Honda", "Red");
+        johnCar.startEngines();
+        johnCar.info();
+    </script>
+    <script>
+        // Class After ES6
+        class Cars {
+            constructor(manufacturer, colors) {
+                this.manufacturer = manufacturer;
+                this.colors = colors;
+                this.enginesActive = false;
+            }
+
+            startEngines() {
+                console.log('Mobil dinyalakan...');
+                this.enginesActive = true;
+            }
+            info() {
+                console.log(`Manufacture: ${this.manufacturer}`);
+                console.log(`Color : ${this.colors}`);
+                console.log(`Engines: ${this.enginesActive ? "Active" : "Inactive"}`);
+            }
+        }
+
+        const johnCars = new Cars("Honda", "Red");
+        johnCars.startEngines();
+        johnCars.info();
+    </script>
+    <script>
+        // Constructor
+        class Car2 {
+            constructor(manufacture, color) {
+                this.manufacture = manufacture;
+                this.color = color;
+                this.enginesActive = false;
+            }
+        }
+    </script>
+    <script>
+        // Instance
+        class Car3 {
+            constructor(manufacture, color) {
+                this.manufacture = manufacture;
+                this.color = color;
+                this.enginesActive = false;
+            }
+        }
+
+        const johnCar2 = new Car3("Honda", "Red");
+        const adamCar = new Car3("Tesla", "Black");
+
+        console.log(johnCar2.manufacture);
+        console.log(adamCar.manufacture);
+    </script>
+    <script>
+        // Property Accessor
+        class Mobil {
+            constructor(manufacture, color) {
+                this.manufacture = manufacture;
+                this.color = color;
+                this.enginesActive = false;
+            }
+        }
+
+        const johnMobil = new Mobil("Honda", "Red");
+        console.log(`Warna mobil: ${johnMobil.color}`); // output -> Warna Mobil: Red
+
+        johnMobil.color = "White"; // Mengubah nilai properti color menjadi white
+
+        console.log(`Warna mobil: ${johnMobil.color}`); // output -> Warna Mobil: White
+    </script>
+    <script>
+        class Mobil2 {
+            constructor(manufacture, color) {
+                this.manufacture = manufacture;
+                this._color = color;
+                this.enginesActive = false;
+            }
+
+            get color() {
+                return `Warna mobil ${this._color}`;
+            }
+
+            set color(value) {
+                console.log(`Warna mobil diubah dari ${this._color} menjadi ${value}`);
+                this._color = value;
+            }
+        }
+
+        const johnMobil2 = new Mobil2("Honda", "Red");
+        console.log(johnMobil2.color); // output -> Warna Mobil: Red
+        johnMobil2.color = "White"; // Mengubah nilai properti color menjadi white
+        console.log(johnMobil2.color); // output -> Warna Mobil: White
+    </script>
+    <!-- end of class -->
+
+    <!-- method -->
+    <script>
+        class methodCar {
+            constructor(manufacture, color) {
+                this.manufacture = manufacture;
+                this.color = color;
+                this.enginesActive = false;
+            }
+
+            startEngines() {
+                console.log("Mesin dinyalakan...");
+                this.enginesActive = true;
+            }
+
+            info() {
+                console.log(`Manufacture : ${this.manufacture}`);
+                console.log(`Color : ${this.color}`);
+                console.log(`Engines : ${this.enginesActive ? "Active" : "Inactive"}`);
+            }
+        }
+
+        const mobilJon = new methodCar("BMW", "Blue");
+
+        mobilJon.startEngines();
+        mobilJon.info();
+    </script>
+    <!-- end of method -->
+
+    <!-- inheritance -->
+    <script>
+        class Mobilan {
+            constructor(licensePlate, manufacture, wheels) {
+                this.licensePlate = licensePlate;
+                this.manufacture = manufacture;
+                this.wheels = wheels;
+                this.engineActive = false;
+            }
+
+            startEngines() {
+                console.log(`Mesin kendaraan ${this.licensePlate} dinyalakan!`);
+            }
+
+            info() {
+                console.log(`Nomor kendaraan: ${this.licensePlate}`);
+                console.log(`Manufacture : ${this.manufacture}`);
+                console.log(`Mesin : ${this.engineActive ? "Active" : "Inactive"}`);
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`)
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`)
+            }
+
+            parking() {
+                console.log(`Kendaraan ${this.licensePlate} parkir!`);
+            }
+        }
+    </script>
+    <script>
+        class Vehicle {
+            constructor(licensePlate, manufacture) {
+                this.licensePlate = licensePlate;
+                this.manufacture = manufacture;
+                this.engineActive = false;
+            }
+
+            startEngines() {
+                console.log(`Mesin kendaraan ${this.licensePlate} dinyalakan!`);
+            }
+
+            info() {
+                console.log(`Nomor Kendaraan: ${this.licensePlate}`);
+                console.log(`Manufacture: ${this.manufacture}`);
+                console.log(`Mesin: ${this.engineActive ? "Active": "Inactive"}`);
+            }
+
+            parking() {
+                console.log(`Kendaraan ${this.licensePlate} parkir!`);
+            }
+        }
+    </script>
+    <script>
+        class Mobils extends Vehicle {
+            constructor(licensePlate, manufacture, wheels) {
+                super(licensePlate, manufacture);
+                this.wheels = wheels;
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`);
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`);
+            }
+        }
+    </script>
+    <script>
+        class Vehicles {
+            constructor(licensePlate, manufacture) {
+                this.licensePlate = licensePlate;
+                this.manufacture = manufacture;
+                this.engineActive = false;
+            }
+
+            startEngines() {
+                console.log(`Mesin kendaraan ${this.licensePlate} dinyalakan!`);
+            }
+
+            info() {
+                console.log(`Nomor Kendaraan: ${this.licensePlate}`);
+                console.log(`Manufacture: ${this.manufacture}`);
+                console.log(`Mesin: ${this.engineActive ? "Active": "Inactive"}`);
+            }
+
+            parking() {
+                console.log(`Kendaraan ${this.licensePlate} parkir!`);
+            }
+        }
+
+        class Mobils2 extends Vehicles {
+            constructor(licensePlate, manufacture, wheels) {
+                super(licensePlate, manufacture);
+                this.wheels = wheels;
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`);
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`);
+            }
+        }
+
+        const car = new Mobils2("H121S", "Honda", 4);
+        car.startEngines();
+    </script>
+    <script>
+        class Mobils3 extends Vehicle {
+            constructor(licensePlate, manufacture, wheels) {
+                super(licensePlate, manufacture);
+                this.wheels = wheels;
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`);
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`);
+            }
+
+            /* overriding method info dari parent class */
+            info() {
+                super.info();
+                console.log(`Jumlah roda: ${this.wheels}`);
+            }
+        }
+
+        const jMobil = new Mobils3("H121S", "Honda", 4);
+        jMobil.info();
+    </script>
+    <script>
+        class Vehicle2 {
+            constructor(licensePlate, manufacture) {
+                this.licensePlate = licensePlate;
+                this.manufacture = manufacture;
+                this.engineActive = false;
+            }
+            startEngines() {
+                console.log(`Mesin kendaraan ${this.licensePlate} dinyalakan!`);
+            }
+
+            info() {
+                console.log(`Nomor Kendaraan: ${this.licensePlate}`);
+                console.log(`Manufacture: ${this.manufacture}`);
+                console.log(`Mesin: ${this.engineActive ? "Active": "Inactive"}`);
+            }
+
+            parking() {
+                console.log(`Kendaraan ${this.licensePlate} parkir!`);
+            }
+        }
+        class Car4 extends Vehicle2 {
+            constructor(licensePlate, manufacture, wheels) {
+                super(licensePlate, manufacture);
+                this.wheels = wheels;
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`);
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`);
+            }
+        }
+        class Motorcycle extends Vehicle2 {
+            constructor(licensePlate, manufacture, wheels) {
+                super(licensePlate, manufacture);
+                this.wheels = wheels;
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`);
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`);
+            }
+        }
+        const jonCar = new Car4("H121S", "Honda", 4);
+        const tomMotor = new Motorcycle("GF121J", "Yamaha", 2);
+        const dimasCar = new Car4("TA1408K", "Tesla", 4);
+
+        class VehicleFactory {
+            static repair(vehicles) {
+                vehicles.forEach(vehicle => {
+                    console.log(`Kendaraan ${vehicle.licensePlate} sedang melakukan perawatan`)
+                })
+            }
+        }
+
+        VehicleFactory.repair([jonCar, tomMotor, dimasCar]);
+    </script>
+    <!-- end of inheritance -->
+</body>
+
+</html>

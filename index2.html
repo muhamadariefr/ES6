@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testing 2</title>
+</head>
+
+<body>
+    <!-- promise -->
+    <script>
+        // setTimeout
+        console.log("Selamat datang!");
+        setTimeout(() => {
+            console.log("Terimakasih sudah mampir, silakan datang kembali!")
+        }, 3000)
+        console.log("Ada yang bisa dibantu?")
+    </script>
+    <script>
+        // Callback Function
+        const getCake = callback => {
+            let cake = null;
+            console.log("Sedang membuat kue, silakan tunggu ....")
+            setTimeout(() => {
+                cake = "Kue Selesai!";
+                callback(cake);
+            }, 3000)
+        }
+
+        getCake(cake => {
+            console.log(cake);
+        })
+    </script>
+    <script>
+        // Callback Hell
+        function makeACake(...rawIngredients) {
+            gatheringIngredients(rawIngredients)
+                .then(makeTheDough)
+                .then(pourDough)
+                .then(bakeACake)
+                .then(console.log);
+        }
+    </script>
+    <!-- <script>
+        const coffee = new Promise();
+    </script> -->
+    <script>
+        const executorFunction = (resolve, reject) => {
+            const isCoffeeMakerReady = true;
+            if (isCoffeeMakerReady) {
+                resolve("Kopi berhasil dibuat");
+            } else {
+                reject("Mesin kopi tidak bisa digunakan!")
+            }
+        }
+
+        const makeCoffee = new Promise(executorFunction);
+        console.log(makeCoffee);
+    </script>
+    <script>
+        const executorFunction2 = (resolve, reject) => {
+            const isCoffeeMakerReady = false;
+            if (isCoffeeMakerReady) {
+                resolve("Kopi berhasil dibuat cuk!");
+            } else {
+                reject("Mesin kopi kaga bisa dipake cok!")
+            }
+        }
+
+        const handlerSuccess = resolvedValue => {
+            console.log(resolvedValue);
+        }
+
+        const handlerRejected = rejectionReason => {
+            console.log(rejectionReason)
+        }
+        const makeCoffees = new Promise(executorFunction2);
+        makeCoffees
+            .then(handlerSuccess)
+            .catch(handlerRejected);
+    </script>
+    <script>
+        // Chaining Promise
+        const state = {
+            isCoffeeMakerReady: true,
+            seedStocks: {
+                arabica: 250,
+                robusta: 60,
+                liberica: 80
+            }
+        }
+
+        const getSeeds = (type, miligrams) => {
+            return new Promise((resolve, reject) => {
+                if (state.seedStocks[type] >= miligrams) {
+                    resolve("Biji kopi dipadatkan!")
+                } else {
+                    reject("Maaf stock kopi habis!")
+                }
+            });
+        }
+        const makeCoffee2 = seeds => {
+            return new Promise((resolve, reject) => {
+                if (state.isCoffeeMakerReady) {
+                    resolve("Kopi berhasil dibuat!")
+                } else {
+                    reject("Maaf mesin tidak dapat digunakan!");
+                }
+            })
+        }
+        const servingToTable = coffee => {
+            return new Promise(resolve => {
+                resolve("Pesanan kopi sudah selesai!")
+            })
+        }
+        async function reserveACoffee(type, miligrams) {
+            try {
+                const seeds = await getSeeds(type, miligrams);
+                const coffee = await makeCoffee2(seeds);
+                const result = await servingToTable(coffee);
+                console.log(result);
+            } catch (rejectionReason) {
+                console.log(rejectionReason);
+            }
+        }
+
+        reserveACoffee("liberica", 80);
+    </script>
+    <script>
+        // Promise All
+        const arabicaOrder = () => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("Kopi arabika selesai!")
+                }, 4000)
+            })
+        }
+        const robustaOrder = () => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("Kopi robusta selesai!")
+                }, 2000)
+            })
+        }
+        const libericaOrder = () => {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("Kopi liberica selesai!")
+                }, 3000)
+            })
+        }
+
+        const promises = [arabicaOrder(), robustaOrder(), libericaOrder()];
+
+        Promise.all(promises)
+            .then(resolvedValue => {
+                console.log(resolvedValue);
+            })
+    </script>
+    <script>
+        // Async-Await Syntax
+        // Promise approach
+        const getCoffee = () => {
+            return new Promise((resolve, reject) => {
+                const seeds = 9;
+                setTimeout(() => {
+                    if (seeds >= 10) {
+                        resolve("Coffee didapatkan!");
+                    } else {
+                        reject("Biji kopi habis!")
+                    }
+                }, 1000)
+            })
+        }
+
+        async function makeCoffee4() {
+            try {
+                const coffee = await getCoffee();
+                console.log(coffee);
+            } catch (rejectedReason) {
+                console.log(rejectedReason);
+            }
+        }
+
+        makeCoffee4();
+    </script>
+    <!-- <script>
+        class Vehicle {
+            constructor(licensePlate, manufacture) {
+                this.licensePlate = licensePlate;
+                this.manufacture = manufacture;
+                this.engineActive = false;
+            }
+            startEngines() {
+                console.log(`Mesin kendaraan ${this.licensePlate} dinyalakan!`);
+            }
+
+            info() {
+                console.log(`Nomor Kendaraan: ${this.licensePlate}`);
+                console.log(`Manufacture: ${this.manufacture}`);
+                console.log(`Mesin: ${this.engineActive ? "Active": "Inactive"}`);
+            }
+
+            parking() {
+                console.log(`Kendaraan ${this.licensePlate} parkir!`);
+            }
+        }
+        class Car extends Vehicle {
+            constructor(licensePlate, manufacture, wheels) {
+                super(licensePlate, manufacture);
+                this.wheels = wheels;
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`);
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`);
+            }
+        }
+        class Motorcycle extends Vehicle {
+            constructor(licensePlate, manufacture, wheels) {
+                super(licensePlate, manufacture);
+                this.wheels = wheels;
+            }
+
+            droveOff() {
+                console.log(`Kendaraan ${this.licensePlate} melaju!`);
+            }
+
+            openDoor() {
+                console.log(`Membuka pintu!`);
+            }
+        }
+        const johnCar = new Car("H121S", "Honda", 4);
+        const tomMotor = new Motorcycle("GF121J", "Yamaha", 2);
+        const dimasCar = new Car("TA1408K", "Tesla", 4);
+
+        class VehicleFactory {
+            static repair(vehicles) {
+                vehicles.forEach(vehicle => {
+                    console.log(`Kendaraan ${vehicle.licensePlate} sedang melakukan perawatan`)
+                })
+            }
+        }
+
+        VehicleFactory.repair([johnCar, tomMotor, dimasCar]);
+    </script> -->
+    <!-- end of promise -->
+
+    <!-- NodeJS import modules -->
+</body>
+
+</html>
